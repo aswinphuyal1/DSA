@@ -12,7 +12,7 @@ int main() {
 
         for (int j = 0; j < size; j++) {
             if (i != j && arr[i] == arr[j]) {
-                isUnique = 0; // Element is not unique
+                isUnique = 0; // Elem
             }
         }
 
@@ -20,6 +20,5 @@ int main() {
             cout << arr[i] << " ";
         }
     }
-
     return 0;
 }

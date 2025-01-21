@@ -6,14 +6,11 @@ int top = -1;
 int size;
 int stack(size); // Declare stack as an array with a fixed size
 int n;
-
 int main()
 {
     int a;
-
     printf("Enter the size of the stack: ");
     scanf("%d", &size);
-
     while(1)
     {
         printf("Enter \n 1)to push\n 2)to pop\n 3)to display\n 4)to exit\n: ");
@@ -22,6 +19,7 @@ int main()
         {
             case 1:
                 push();
+                
                 break;
             case 2:
                 printf("Invalid input\n");
@@ -36,7 +34,6 @@ int main()
         }
     }
 }
-
 int push()
 {
     if(top == size - 1)

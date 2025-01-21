@@ -2,15 +2,15 @@
 #include<stdlib.h>
 
 int push();
-int pop();
-void display();
 int top = -1;
 int size;
-int stack[100]; // Declare stack as a fixed-size array
-int a, i = 0;
+int stack(size); // Declare stack as an array with a fixed size
+int n;
 
 int main()
 {
+    int a;
+
     printf("Enter the size of the stack: ");
     scanf("%d", &size);
 
@@ -24,10 +24,10 @@ int main()
                 push();
                 break;
             case 2:
-                pop();
+                printf("Invalid input\n");
                 break;
             case 3:
-                display();
+                printf("Invalid input\n");
                 break;
             case 4:
                 exit(0);
@@ -46,23 +46,7 @@ int push()
     else
     {
         printf("Enter the element to push: ");
-        scanf("%d", &stack[++top]); // Increment top and then assign value
+        scanf("%d", &stack); 
+        top++;
     }
 }
-
-int pop()
-{
-    if(top == -1)
-    {
-        printf("Stack is empty\n");
-    }
-    else
-    {
-        printf("Popped element: %d\n", stack[top--]); // Print and decrement top
-    }
-}
-
-void display()
-{
-    if(top == -1)
-    {

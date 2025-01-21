@@ -3,26 +3,20 @@
 
 int push();
 int pop();
+void display();
 int top = -1;
 int size;
-int *stack; // Declare stack as a pointer to int
+int stack[100]; // Declare stack as a fixed-size array
+int a, i = 0;
 
 int main()
 {
-    int a, i = 0;
-
     printf("Enter the size of the stack: ");
     scanf("%d", &size);
-    
-    stack = (int*)malloc(size * sizeof(int)); // Allocate memory for the stack
-    if (stack == NULL) {
-        printf("Memory not allocated.\n");
-        return 1;
-    }
 
     while(1)
     {
-        printf("Enter \n 1)to push\n, 2)to pop\n, 3)to display\n, 4)to exit\n: ");
+        printf("Enter \n 1)to push\n 2)to pop\n 3)to display\n 4)to exit\n: ");
         scanf("%d", &a);
         switch(a)
         {
@@ -30,13 +24,12 @@ int main()
                 push();
                 break;
             case 2:
-               
+                pop();
                 break;
             case 3:
-              
+                display();
                 break;
             case 4:
-                free(stack);
                 exit(0);
             default:
                 printf("Invalid input\n");
@@ -53,7 +46,23 @@ int push()
     else
     {
         printf("Enter the element to push: ");
-        scanf("%d", &stack); // Increment top and then assign value
-    top++;
+        scanf("%d", &stack[++top]); // Increment top and then assign value
     }
 }
+
+int pop()
+{
+    if(top == -1)
+    {
+        printf("Stack is empty\n");
+    }
+    else
+    {
+        printf("Popped element: %d\n", stack[top--]); // Print and decrement top
+    }
+}
+
+void display()
+{
+    if(top == -1)
+    {

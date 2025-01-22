@@ -8,7 +8,7 @@ int main()
     printf("enter the size of memory N: ");
     scanf("%d", &n);
 
-    ptr1 = (int*)calloc(n, sizeof(int));
+    ptr1 = (int*)calloc(n,sizeof(int) * n);
     if (ptr1 == NULL) {
         printf("Memory not allocated.\n");
         return 1;
@@ -37,7 +37,7 @@ int main()
     ptr2 = (int*)realloc(ptr1, sizeof(int) * m);
     if (ptr2 == NULL) {
         printf("Memory not reallocated.\n");
-        free(ptr1);
+         free(ptr1);
         return 1;
     }
 
@@ -54,7 +54,7 @@ int main()
     }
     printf("\n");
 
-    free(ptr2);
+     free(ptr2);
 
     return 0;
 }

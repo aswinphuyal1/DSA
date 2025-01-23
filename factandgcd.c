@@ -8,26 +8,31 @@ int main()
 {
     int a;
     printf("\nCODE BY Aswin Phuyal\n\n\n");
-    printf("enter your choice\n 1) for factorial\n 2) for gcd\n");
-    scanf("%d", &a);
-    switch(a)
+    while(1)
     {
-        case 1:
-            printf("enter the number you want to find the factorial of: ");
-            int b;
-            scanf("%d", &b);
-            int z = fact(b);
-            printf("the factorial of the number is %d\n", z);
-            break;
-        case 2:
-            printf("enter the two numbers you want to find the gcd of: ");
-            int x, y;
-            scanf("%d%d", &x, &y);
-            int g = gcd(x, y);
-            printf("the gcd of the numbers is %d\n", g);
-            break;
-        default:
-            printf("Invalid input. Please try again.\n");
+        printf("enter your choice\n 1) for factorial\n 2) for gcd\n 3) to exit\n");
+        scanf("%d", &a);
+        switch(a)
+        {
+            case 1:
+                printf("enter the number you want to find the factorial of: ");
+                int b;
+                scanf("%d", &b);
+                int z = fact(b);
+                printf("the factorial of the number is %d\n", z);
+                break;
+            case 2:
+                printf("enter the two numbers you want to find the gcd of: ");
+                int x, y;
+                scanf("%d%d", &x, &y);
+                int g = gcd(x, y);
+                printf("the gcd of the numbers is %d\n", g);
+                break;
+            case 3:
+                exit(0);
+            default:
+                printf("Invalid input. Please try again.\n");
+        }
     }
     return 0;
 }

@@ -11,7 +11,6 @@ int n;
 
 int main()
 {
-     printf("\nCODE BY ASwin phuyal\n\n\n");
     int a;
     printf("Enter the size of the stack: ");
     scanf("%d", &size);

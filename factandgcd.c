@@ -3,6 +3,8 @@
 
 int fact(int);
 int gcd(int, int);
+int towerOfHanoi(int, char, char, char);
+int count = 1;
 
 int main()
 {
@@ -10,7 +12,7 @@ int main()
     printf("\nCODE BY Aswin Phuyal\n\n\n");
     while(1)
     {
-        printf("enter your choice\n 1) for factorial\n 2) for gcd\n 3) to exit\n");
+        printf("enter your choice\n 1) for factorial\n 2) for gcd\n 3) for Tower of Hanoi\n 4) to exit\n");
         scanf("%d", &a);
         switch(a)
         {
@@ -29,6 +31,20 @@ int main()
                 printf("the gcd of the numbers is %d\n", g);
                 break;
             case 3:
+                printf("enter the number of disks: ");
+                int n;
+                scanf("%d", &n);
+                char from_rod, to_rod, aux_rod;
+                printf("enter the source rod: ");
+                scanf(" %c", &from_rod);
+                printf("enter the destination rod: ");
+                scanf(" %c", &to_rod);
+                printf("enter the auxiliary rod: ");
+                scanf(" %c", &aux_rod);
+                towerOfHanoi(n, from_rod, to_rod, aux_rod);
+                printf("The number of moves required are %d\n", count - 1);
+                break;
+            case 4:
                 exit(0);
             default:
                 printf("Invalid input. Please try again.\n");
@@ -59,4 +75,18 @@ int gcd(int a, int b)
     {
         return gcd(b, a % b);
     }
+}
+
+int towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod)
+{
+    if (n == 1)
+    {
+        printf("%d) Move disk 1 from rod %c to rod %c\n", count, from_rod, to_rod);
+        count++;
+        return 1;
+    }
+    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+    printf("%d) Move disk %d from rod %c to rod %c\n", count, n, from_rod, to_rod);
+    count++;
+    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
 }

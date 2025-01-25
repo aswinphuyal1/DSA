@@ -53,7 +53,10 @@ int isOperator(char ch) {
 void infixToPostfix(char* infix, char* postfix) {
     Stack s = {.top = -1};
     int k = 0;
-    for (int i = 0; infix[i] != '\0'; i++) {
+    for (int i = 0; infix[i] != '\0'; i++) { 
+        postfix[k+1] = '\0';
+        for(int i=0;postfix[i] !='\0';i++)
+        printf(" %c ",postfix[i]);
         char ch = infix[i];
 
         if (isalnum(ch)) {  // Operand
@@ -139,8 +142,11 @@ int main() {
     char infix[MAX], postfix[MAX], prefix[MAX];
     int choice;
 
+
     printf("Enter an infix expression: ");
     scanf("%s", infix);
+
+
 
     do {
         printf("\nChoose an option:\n");

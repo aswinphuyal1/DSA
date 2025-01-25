@@ -1,0 +1,5 @@
+1)bisection 
+2)newton rapshon
+3)secant
+4)fixed point
+5)newton rapshon to find multiple rppts

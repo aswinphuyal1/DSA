@@ -4,6 +4,7 @@
 int fact(int);
 int gcd(int, int);
 int towerOfHanoi(int, char, char, char);
+int fibonacci(int);  // Function prototype for Fibonacci series
 int count = 1;
 
 int main()
@@ -12,7 +13,7 @@ int main()
     printf("\nCODE BY Aswin Phuyal\n\n\n");
     while(1)
     {
-        printf("enter your choice\n 1) for factorial\n 2) for gcd\n 3) for Tower of Hanoi\n 4) to exit\n");
+        printf("enter your choice\n 1) for factorial\n 2) for gcd\n 3) for Tower of Hanoi\n 4) for Fibonacci series\n 5) to exit\n");
         scanf("%d", &a);
         switch(a)
         {
@@ -45,6 +46,16 @@ int main()
                 printf("The number of moves required are %d\n", count - 1);
                 break;
             case 4:
+                printf("enter the number of terms for Fibonacci series: ");
+                int terms;
+                scanf("%d", &terms);
+                printf("Fibonacci series: ");
+                for (int i = 0; i < terms; i++) {
+                    printf("%d ", fibonacci(i));
+                }
+                printf("\n");
+                break;
+            case 5:
                 exit(0);
             default:
                 printf("Invalid input. Please try again.\n");
@@ -89,4 +100,12 @@ int towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod)
     printf("%d) Move disk %d from rod %c to rod %c\n", count, n, from_rod, to_rod);
     count++;
     towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+    return 1;
+}
+
+int fibonacci(int n)
+{
+    if (n <= 1)
+        return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }

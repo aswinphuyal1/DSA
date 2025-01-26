@@ -5,6 +5,7 @@ int main()
 {
 
     int num;
+    printf("\t  code by aswin\n");
     printf("Enter a number: ");
     scanf("%d", &num);
     printf("Factorial of %d is %d\n", num, facto(num,1));

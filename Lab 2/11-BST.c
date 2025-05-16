@@ -31,7 +31,56 @@ struct Node* insert(struct Node* root, int data) {
     return root;
 }
 
-// Function to perform in-order traversal (Left -> Root -> Right)
+// Function to search for a value
+struct Node* search(struct Node* root, int key) {
+    if (root == NULL || root->data == key)
+        return root;
+
+    if (key < root->data)
+        return search(root->left, key);
+    else
+        return search(root->right, key);
+}
+
+// Find the minimum value node in the right subtree
+struct Node* findMin(struct Node* node) {
+    struct Node* current = node;
+    while (current && current->left != NULL)
+        current = current->left;
+    return current;
+}
+
+// Function to delete a node from the BST
+struct Node* deleteNode(struct Node* root, int key) {
+    if (root == NULL)
+        return root;
+
+    if (key < root->data)
+        root->left = deleteNode(root->left, key);
+    else if (key > root->data)
+        root->right = deleteNode(root->right, key);
+    else {
+        // Node found
+        if (root->left == NULL) {
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Node with two children
+        struct Node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+
+    return root;
+}
+
+// In-order Traversal (Left -> Root -> Right)
 void inorder(struct Node* root) {
     if (root != NULL) {
         inorder(root->left);
@@ -40,7 +89,7 @@ void inorder(struct Node* root) {
     }
 }
 
-// Function to perform pre-order traversal (Root -> Left -> Right)
+// Pre-order Traversal (Root -> Left -> Right)
 void preorder(struct Node* root) {
     if (root != NULL) {
         printf("%d ", root->data);
@@ -49,7 +98,7 @@ void preorder(struct Node* root) {
     }
 }
 
-// Function to perform post-order traversal (Left -> Right -> Root)
+// Post-order Traversal (Left -> Right -> Root)
 void postorder(struct Node* root) {
     if (root != NULL) {
         postorder(root->left);
@@ -59,18 +108,15 @@ void postorder(struct Node* root) {
 }
 
 int main() {
-printf("**\tCompiled By Aswin phuyal\t**\n");
+    printf("**\tCompiled By Aswin Phuyal\t**\n");
+
     struct Node* root = NULL;
     int choice, value;
 
     while (1) {
         printf("\n--- BST Operations ---\n");
-        printf("1. Insert\t");
-        printf("2. Delete\t");
-        printf("3. Search\n");
-        printf("4. In-order Traversal\t");
-        printf("5. Pre-order Traversal\t");
-        printf("6. Post-order Traversal\t");
+        printf("1. Insert\t2. Delete\t3. Search\n");
+        printf("4. In-order Traversal\t5. Pre-order Traversal\t6. Post-order Traversal\n");
         printf("7. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -86,17 +132,18 @@ printf("**\tCompiled By Aswin phuyal\t**\n");
             case 2:
                 printf("Enter value to delete: ");
                 scanf("%d", &value);
-                // Call delete function (this part can be implemented as needed)
-                // root = deleteNode(root, value);
-                printf("%d deleted successfully.\n", value);
+                root = deleteNode(root, value);
+                printf("%d deleted successfully (if it existed).\n", value);
                 break;
 
             case 3:
                 printf("Enter value to search: ");
                 scanf("%d", &value);
-                // Search operation here (implement as needed)
-                // struct Node* searchResult = search(root, value);
-                // printf("%d found.\n", value);
+                struct Node* searchResult = search(root, value);
+                if (searchResult)
+                    printf("%d found in the tree.\n", value);
+                else
+                    printf("%d not found in the tree.\n", value);
                 break;
 
             case 4:
@@ -118,15 +165,16 @@ printf("**\tCompiled By Aswin phuyal\t**\n");
                 break;
 
             case 7:
-                printf("Exited\n");
+                printf("Exited.\n");
                 return 0;
 
             default:
-                printf("Invalid choice\n");
+                printf("Invalid choice. Try again.\n");
                 break;
         }
     }
 
     return 0;
 }
-
+// This code implements a Binary Search Tree (BST) with basic operations such as insertion, deletion, searching, and traversals (in-order, pre-order, post-order).
+// The user can interact with the BST through a menu-driven interface, allowing them to perform various operations on the tree.

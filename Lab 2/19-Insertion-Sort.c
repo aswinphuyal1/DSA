@@ -38,7 +38,6 @@ int main() {
 
     printf("**\tCompiled By Aswin Phuyal\t**\n");
 
-    // User input
     printf("Enter number of elements: ");
     scanf("%d", &n);
 
@@ -49,21 +48,31 @@ int main() {
         scanf("%d", &arr[i]);
     }
 
-    // Order selection
-    printf("\nChoose sorting order:\n");
-    printf("1. Ascending\n");
-    printf("2. Descending\n");
-    printf("Enter choice (1 or 2): ");
-    scanf("%d", &order);
+    while (1) {
+        printf("\nChoose sorting order:\n");
+        printf("1. Ascending\n");
+        printf("2. Descending\n");
+        printf("0. Exit\n");
+        printf("Enter choice (0, 1 or 2): ");
+        scanf("%d", &order);
 
-    printf("\nSorting steps:\n");
-    insertionsort(arr, n, order);
+        if (order == 0) {
+            printf("Exiting...\n");
+            break;
+        } else if (order != 1 && order != 2) {
+            printf("Invalid choice. Try again.\n");
+            continue;
+        }
 
-    printf("\nSorted array: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+        printf("\nSorting steps:\n");
+        insertionsort(arr, n, order);
+
+        printf("\nSorted array: ");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
     }
-    printf("\n");
 
     return 0;
 }
